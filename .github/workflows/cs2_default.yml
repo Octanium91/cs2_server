@@ -1,0 +1,42 @@
+name: cs2_default
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - cs2_default/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+      REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+      REMOTE_PORT: ${{ secrets.DEPLOY_PORT }}
+      ARGS: "-rltgoDzvO --delete"  
+      SOURCE: "cs2_default"
+      TARGET: "/root/f/cs2/cs2_default/"    
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Stop server
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: docker compose -f /root/f/cs2/cs2_default/docker-compose.yml down -v
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          username: ${{ secrets.DEPLOY_USER }}
+          passphrase: ''
+          privateKey: ${{ secrets.DEPLOY_KEY}}
+      - name: Copy on machine
+        uses: easingthemes/ssh-deploy@v2.1.5
+      - name: Start server
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: docker compose -f /root/f/cs2/cs2_default/docker-compose.yml up -d
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          username: ${{ secrets.DEPLOY_USER }}
+          passphrase: ''
+          privateKey: ${{ secrets.DEPLOY_KEY}}
