@@ -1,6 +1,6 @@
 services:
   cs2-server:
-    image: joedwards32/cs2
+    image: joedwards32/cs2:3.0.4
     restart: unless-stopped
     container_name: cs2-dust
     env_file:
