@@ -1,7 +1,7 @@
 
 ## Connect in CS2
 
-**Mirage ([3305020821](https://steamcommunity.com/sharedfiles/filedetails/?id=3305020821))**
+**Mirage Fun ([3226797269](https://steamcommunity.com/sharedfiles/filedetails/?id=3226797269))**
 ```connect 194.247.12.186:6915```
 
 **Pollday ([3070923343](https://steamcommunity.com/sharedfiles/filedetails/?id=3070923343))**
