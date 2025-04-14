@@ -1,0 +1,28 @@
+services:
+  cs2-server:
+    image: joedwards32/cs2
+    restart: unless-stopped
+    container_name: cs2-dust
+    env_file:
+      - config.env
+      - ../token.env
+    volumes:
+      - cs2-dedicated:/home/steam/cs2-dedicated/  # Persistent data volume mount point inside container
+    ports:
+      - "6917:6917/tcp"           # TCP
+      - "6917:6917/udp"           # UDP
+    logging:
+      driver: "json-file"
+      options:
+        tag: "cs2-default"
+        max-size: 256m
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2GB
+#    stdin_open: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-dedicated
+#    tty: true # Add local console for docker attach, docker attach --sig-proxy=false cs2-dedicated
+volumes:
+  cs2-dedicated:
+    external: true
