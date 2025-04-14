@@ -16,7 +16,7 @@ jobs:
       REMOTE_PORT: ${{ secrets.DEPLOY_PORT }}
       ARGS: "-rltgoDzvO --delete"  
       SOURCE: "cs2_dust"
-      TARGET: "/root/f/cs2/cs2_dust/"    
+      TARGET: "/root/f/cs2/"    
 
     steps:
       - uses: actions/checkout@v2
