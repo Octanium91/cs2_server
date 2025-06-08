@@ -1,4 +1,21 @@
 services:
+
+  db:
+    image: mysql:9.3.0
+    restart: unless-stopped
+    volumes:
+      - ../cs_sql_default:/var/lib/mysql
+    logging:
+      driver: "json-file"
+      options:
+        tag: "cs2-default-sql"
+        max-size: 256m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1GB
+
   cs2-server:
     image: joedwards32/cs2:3.0.4
     restart: unless-stopped
