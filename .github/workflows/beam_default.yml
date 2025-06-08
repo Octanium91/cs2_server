@@ -15,7 +15,7 @@ jobs:
       REMOTE_USER: ${{ secrets.DEPLOY_USER }}
       REMOTE_PORT: ${{ secrets.DEPLOY_PORT }}
       ARGS: "-rltgoDzvO --delete"  
-      SOURCE: "beam_default"
+      SOURCE: "beam-server"
       TARGET: "/root/f/cs2/"    
 
     steps:
