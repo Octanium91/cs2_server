@@ -1,0 +1,21 @@
+services:
+  beam-server:
+    image: rouhim/beammp-server:latest
+    restart: unless-stopped
+    container_name: beam-dust
+    env_file:
+      - config.env
+      - ../beam_token.env
+    ports:
+      - "30814:30814/tcp"           # TCP
+      - "30814:30814/udp"           # UDP
+    logging:
+      driver: "json-file"
+      options:
+        tag: "beam-default"
+        max-size: 256m
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2GB
