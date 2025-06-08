@@ -3,6 +3,8 @@ services:
   db:
     image: mysql:9.3.0
     restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
     volumes:
       - ../cs_sql_default:/var/lib/mysql
     logging:
