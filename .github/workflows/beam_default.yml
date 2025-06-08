@@ -23,7 +23,7 @@ jobs:
       - name: Stop server
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: docker compose -f /root/f/cs2/beam_default/docker-compose.yml down -v || true
+          command: docker compose -f /root/f/cs2/beam-server/docker-compose.yml down -v || true
           host: ${{ secrets.DEPLOY_HOST }}
           port: ${{ secrets.DEPLOY_PORT }}
           username: ${{ secrets.DEPLOY_USER }}
@@ -34,7 +34,7 @@ jobs:
       - name: Start server
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: docker compose -f /root/f/cs2/beam_default/docker-compose.yml up -d
+          command: docker compose -f /root/f/cs2/beam-server/docker-compose.yml up -d
           host: ${{ secrets.DEPLOY_HOST }}
           port: ${{ secrets.DEPLOY_PORT }}
           username: ${{ secrets.DEPLOY_USER }}
